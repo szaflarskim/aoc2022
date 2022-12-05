@@ -5,13 +5,13 @@ from Day4.solution import day4
 from Day5.solution import day5
 
 if __name__ == "__main__":
-  # print("Day 1 =============")
-  # day1()
-  # print("Day 2 =============")
-  # day2()
-  # print("Day 3 =============")
-  # day3()
-  # print("Day 4 =============")
-  # day4()
+  print("Day 1 =============")
+  day1()
+  print("Day 2 =============")
+  day2()
+  print("Day 3 =============")
+  day3()
   print("Day 4 =============")
+  day4()
+  print("Day 5 =============")
   day5()
