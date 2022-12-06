@@ -1,5 +1,6 @@
 { pkgs }: {
   deps = [
+    pkgs.poetry
     pkgs.python38Full
   ];
   env = {
