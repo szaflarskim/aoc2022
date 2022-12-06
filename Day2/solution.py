@@ -27,9 +27,9 @@ def get_outcome_original(play, response):
 
     # result
     scores_map = {
-        "A": {"X": 3, "Y" :6, "Z" : 0},
-        "B": {"X": 0, "Y": 3,"Z": 6}, 
-        "C": {"X": 6, "Y": 0,"Z": 3}
+        "A": {"X": 3, "Y": 6, "Z": 0},
+        "B": {"X": 0, "Y": 3, "Z": 6},
+        "C": {"X": 6, "Y": 0, "Z": 3},
     }
     response_points = {
         "X": 1,
@@ -63,11 +63,11 @@ def get_outcome_new_rules(play, outcome):
     # result
     response = {
         # Rock
-        "A" : {"X": "scissors","Y": "rock","Z": "paper"}, 
+        "A": {"X": "scissors", "Y": "rock", "Z": "paper"},
         # Paper
-        "B" :{"X": "rock","Y": "paper","Z": "scissors"},
+        "B": {"X": "rock", "Y": "paper", "Z": "scissors"},
         # Scissors
-        "C": {"X": "paper","Y": "scissors","Z": "rock"}
+        "C": {"X": "paper", "Y": "scissors", "Z": "rock"},
     }
     outcome_points = {
         "X": 0,
@@ -85,6 +85,7 @@ def get_score(get_outcome):
         play, response = game_round.split(" ")
         score = score + get_outcome(play, response)
     return score
+
 
 def day2():
     print("Original rules score: {}".format(get_score(get_outcome_original)))
