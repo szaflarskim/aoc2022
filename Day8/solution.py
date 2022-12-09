@@ -50,35 +50,37 @@ def get_scenic_score(x, y):
     return scenic_score
 
 
-def is_visible(x, y):
+def visible_left(x, y):
     # left
     l_visible = True
     for i in range(0, y):
         if tree_map[x][i] >= tree_map[x][y]:
             l_visible = False
             break
+    return l_visible
 
-    if l_visible:
-        return True
 
+def visible_down(x, y):
     # down
     d_visible = True
     for i in range(x + 1, len(tree_map)):
         if tree_map[i][y] >= tree_map[x][y]:
             d_visible = False
             break
-    if d_visible:
-        return True
+    return d_visible
 
+
+def visible_right(x, y):
     # right
     r_visible = True
     for i in range(y + 1, len(tree_map[x])):
         if tree_map[x][i] >= tree_map[x][y]:
             r_visible = False
             break
-    if r_visible:
-        return True
+    return r_visible
 
+
+def visible_top(x, y):
     # top
     t_visible = True
     for i in range(0, x):
@@ -86,8 +88,14 @@ def is_visible(x, y):
             t_visible = False
             break
 
-    if t_visible:
-        return True
+    return t_visible
+
+
+def is_visible(x, y):
+    for visible in [visible_top, visible_right, visible_down, visible_left]:
+        if visible(x, y):
+            return True
+    return False
 
 
 def get_visible_trees():
