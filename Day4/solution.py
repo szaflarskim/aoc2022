@@ -1,9 +1,11 @@
-f = open("Day4/input", "r")
-lines = [line.rstrip() for line in f]
-f.close()
 
+def get_input(input_file):
+    input_file = open(input_file, "r")
+    lines = [line.rstrip() for line in input_file]
+    input_file.close()
+    return lines
 
-def get_sections():
+def get_sections(lines):
     sections = []
     ranges = [[s for s in l.split(",")] for l in lines]
     for r in ranges:
@@ -18,18 +20,21 @@ def get_sections():
     return sections
 
 
-def p1():
-    s = get_sections()
+def p1(lines):
+    s = get_sections(lines)
     print(
         len([sec for sec in s if sec[0].issubset(sec[1]) or sec[0].issuperset(sec[1])])
     )
 
 
-def p2():
-    s = get_sections()
+def p2(lines):
+    s = get_sections(lines)
     print(len([sec for sec in s if sec[0].intersection(sec[1])]))
 
 
-def day4():
-    p1()
-    p2()
+def day4(input_file="Day4/sample"):
+    p1(get_input(input_file=input_file))
+    p2(get_input(input_file=input_file))
+
+
+# day4('aoc2022-inputs/d4')

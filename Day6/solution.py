@@ -1,6 +1,8 @@
-f = open("Day6/input", "r")
-lines = f.readlines()
-f.close()
+def get_input(input_file):
+    input_file = open(input_file, "r")
+    lines = input_file.readlines()
+    input_file.close()
+    return lines
 
 
 def get_marker_start(buffer_stream, marker_start=4):
@@ -19,14 +21,19 @@ def get_message_start(buffer_stream):
     return get_marker_start(buffer_stream, marker_start=14)
 
 
-def p1():
-    print(get_packet_start(lines[0]))
+def p1(lines):
+    for line in lines:
+        print(f"For {line} packet start at {get_packet_start(line)}")
 
 
-def p2():
-    print(get_message_start(lines[0]))
+def p2(lines):
+    for line in lines:
+        print(f"For {line} message start at {get_message_start(line)}")
 
 
-def day6():
-    p1()
-    p2()
+def day6(input_file="Day6/sample"):
+    p1(get_input(input_file=input_file))
+    p2(get_input(input_file=input_file))
+
+
+# day6('aoc2022-inputs/d6')

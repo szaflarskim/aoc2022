@@ -1,6 +1,8 @@
-f = open("Day9/input", "r")
-moves = [line.rstrip() for line in f]
-f.close()
+def get_moves(input_file):
+    f = open(input_file, "r")
+    moves = [line.rstrip() for line in f]
+    f.close()
+    return moves
 
 
 def create_grid(size, start_position):
@@ -87,7 +89,7 @@ def move_head(direction, current_head):
     return current_head
 
 
-def process_moves(rope_length=2, with_grid=False):
+def process_moves(moves, rope_length=2, with_grid=False):
     rope = [[0, 0] for _ in range(0, rope_length)]
     tail_visited = {"0 0"}
 
@@ -109,20 +111,23 @@ def process_moves(rope_length=2, with_grid=False):
     return tail_visited
 
 
-def p1(rope_length=2, with_grid=False):
-    tail_visited = process_moves(rope_length=rope_length, with_grid=with_grid)
+def p1(moves, rope_length=2, with_grid=False):
+    tail_visited = process_moves(moves, rope_length=rope_length, with_grid=with_grid)
     print(
         f"Tail visited {len(tail_visited)} positions when rope has {rope_length} knots."
     )
 
 
-def p2(rope_length=10, with_grid=False):
-    tail_visited = process_moves(rope_length=rope_length, with_grid=with_grid)
+def p2(moves, rope_length=10, with_grid=False):
+    tail_visited = process_moves(moves, rope_length=rope_length, with_grid=with_grid)
     print(
         f"Tail visited {len(tail_visited)} positions when rope has {rope_length} knots."
     )
 
 
-def day9():
-    p1(with_grid=False)
-    p2(with_grid=False)
+def day9(input_file="Day9/sample2"):
+    p1(get_moves(input_file=input_file), with_grid=False)
+    p2(get_moves(input_file=input_file), with_grid=False)
+
+
+# day9("aoc2022-inputs/d9")

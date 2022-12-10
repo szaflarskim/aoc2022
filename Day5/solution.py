@@ -1,8 +1,11 @@
 import re
 
-f = open("Day5/input", "r")
-lines = [line.replace("\n", "") for line in f]
-f.close()
+
+def get_input(input_file):
+    input_file = open(input_file, "r")
+    lines = [line.rstrip() for line in input_file]
+    input_file.close()
+    return lines
 
 
 def get_stacks(stack_piles):
@@ -22,7 +25,7 @@ def get_stacks(stack_piles):
     return stacks
 
 
-def get_data():
+def get_data(lines):
     instructions = [
         [int(inst) for inst in re.split("move|from|to", l)[1::]]
         for l in lines
@@ -50,22 +53,25 @@ def execute_instructions(crate_mover, stacks, instructions):
     return stacks
 
 
-def get_top_crates(crate_mover):
-    stacks, instructions = get_data()
+def get_top_crates(crate_mover, lines):
+    stacks, instructions = get_data(lines)
     arranged_stacks = execute_instructions(crate_mover, stacks, instructions)
     return "".join(
         [arranged_stacks[stack_no][-1] for stack_no in list(arranged_stacks.keys())]
     )
 
 
-def p1():
-    print(get_top_crates(crate_mover_9000))
+def p1(lines):
+    print(get_top_crates(crate_mover_9000, lines))
 
 
-def p2():
-    print(get_top_crates(crate_mover_9001))
+def p2(lines):
+    print(get_top_crates(crate_mover_9001, lines))
 
 
-def day5():
-    p1()
-    p2()
+def day5(input_file="Day5/sample"):
+    p1(get_input(input_file=input_file))
+    p2(get_input(input_file=input_file))
+
+
+# day5('aoc2022-inputs/d5')

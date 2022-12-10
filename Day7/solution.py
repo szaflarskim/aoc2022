@@ -1,9 +1,13 @@
-f = open("Day7/input", "r")
-lines = [line.rstrip() for line in f]
-f.close()
+
+def get_input(input_file):
+    input_file = open(input_file, "r")
+    lines = [line.rstrip() for line in input_file]
+    input_file.close()
+    return lines
 
 
 def get_dir_size(
+    lines,
     next_index=0,
     current_path=None,
     dir_sizes=None,
@@ -23,6 +27,7 @@ def get_dir_size(
                     return (next_index, dir_sizes)
                 else:
                     next_index, dir_sizes = get_dir_size(
+                        lines,
                         next_index + 1,
                         current_path=current_path + [tokens[2]],
                         dir_sizes=dir_sizes,
@@ -37,16 +42,16 @@ def get_dir_size(
     return next_index, dir_sizes
 
 
-def p1():
-    _, dirs = get_dir_size()
+def p1(lines):
+    _, dirs = get_dir_size(lines)
     less_than_100000 = [
         sum(dirs[dir_name]) for dir_name in dirs.keys() if sum(dirs[dir_name]) <= 100000
     ]
     print(sum(less_than_100000))
 
 
-def p2():
-    _, dirs = get_dir_size()
+def p2(lines):
+    _, dirs = get_dir_size(lines)
     total_space = 70000000
     required = 30000000
 
@@ -60,6 +65,9 @@ def p2():
     print(min(size_match))
 
 
-def day7():
-    p1()
-    p2()
+def day7(input_file="Day7/sample"):
+    p1(get_input(input_file=input_file))
+    p2(get_input(input_file=input_file))
+
+
+# day7('aoc2022-inputs/d7')

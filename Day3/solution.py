@@ -1,8 +1,11 @@
 from string import ascii_lowercase, ascii_uppercase
 
-f = open("Day3/input", "r")
-lines = [line.rstrip() for line in f]
-f.close()
+
+def get_input(input_file):
+    input_file = open(input_file, "r")
+    lines = [line.rstrip() for line in input_file]
+    input_file.close()
+    return lines
 
 
 def get_priorities():
@@ -14,15 +17,15 @@ def get_priorities():
     return priorities
 
 
-def get_rucksacks():
+def get_rucksacks(lines):
     rucksacks = [(r[0 : len(r) // 2], r[len(r) // 2 :]) for r in lines]
     return rucksacks
 
 
-def part_1():
+def part_1(lines):
     priorities_value = 0
     p = get_priorities()
-    r = get_rucksacks()
+    r = get_rucksacks(lines)
 
     for c1, c2 in r:
         i = set(c1).intersection(set(c2))
@@ -32,7 +35,7 @@ def part_1():
     print(priorities_value)
 
 
-def part_2():
+def part_2(lines):
     p = get_priorities()
     p_val = 0
     for i in range(0, len(lines), 3):
@@ -42,6 +45,8 @@ def part_2():
     print(p_val)
 
 
-def day3():
-    part_1()
-    part_2()
+def day3(input_file="Day3/sample"):
+    part_1(get_input(input_file=input_file))
+    part_2(get_input(input_file=input_file))
+
+# day3('aoc2022-inputs/d3')

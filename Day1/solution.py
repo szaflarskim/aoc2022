@@ -1,9 +1,12 @@
-input_file = open("Day1/input", "r")
-lines = [line.rstrip() for line in input_file]
-input_file.close()
-
 elves = []
 current_elf = {"id": 1, "calories": 0}
+
+
+def get_input(input_file):
+    input_file = open(input_file, "r")
+    lines = [line.rstrip() for line in input_file]
+    input_file.close()
+    return lines
 
 
 def add_elf():
@@ -12,7 +15,7 @@ def add_elf():
     current_elf = {"id": current_elf["id"] + 1, "calories": 0}
 
 
-def get_sorted_elves():
+def get_sorted_elves(lines):
     global elves, current_elf
     for cal in lines:
         if not cal:
@@ -27,8 +30,8 @@ def get_sorted_elves():
     return sorted_elves
 
 
-def day1():
-    sorted_elves = get_sorted_elves()
+def day1(input_file="Day1/sample"):
+    sorted_elves = get_sorted_elves(get_input(input_file=input_file))
     # Sol 1
     print(
         f"Top calories elf {sorted_elves[0]['id']} carries {sorted_elves[0]['calories']}"
@@ -36,3 +39,5 @@ def day1():
 
     # Sol 2
     print(f"Top three calories: {sum([elf['calories'] for elf in sorted_elves[:3]])}")
+
+# day1('aoc2022-inputs/d1')

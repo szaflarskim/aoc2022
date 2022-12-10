@@ -1,15 +1,17 @@
-f = open("Day8/input", "r")
-tree_map = [[int(t) for t in line.rstrip()] for line in f]
-f.close()
+def get_tree_map(input_file):
+    input_file = open(input_file, "r")
+    tree_map = [[int(t) for t in line.rstrip()] for line in input_file]
+    input_file.close()
+    return tree_map
 
 
-def get_best_possible_tree_counts(x, y):
+def get_best_possible_tree_counts(tree_map, x, y):
     tree_map_length = len(tree_map)
     return [y, tree_map_length - 1 - x, tree_map_length - 1 - y, x]
 
 
-def get_scenic_score(x, y):
-    num_trees = get_best_possible_tree_counts(x, y)
+def get_scenic_score(tree_map, x, y):
+    num_trees = get_best_possible_tree_counts(tree_map, x, y)
     # print(f"Checking tree {[x,y]}")
     # print(f"Initial num_trees {num_trees}")
 
@@ -50,7 +52,7 @@ def get_scenic_score(x, y):
     return scenic_score
 
 
-def visible_left(x, y):
+def visible_left(tree_map, x, y):
     # left
     l_visible = True
     for i in range(0, y):
@@ -60,7 +62,7 @@ def visible_left(x, y):
     return l_visible
 
 
-def visible_down(x, y):
+def visible_down(tree_map, x, y):
     # down
     d_visible = True
     for i in range(x + 1, len(tree_map)):
@@ -70,7 +72,7 @@ def visible_down(x, y):
     return d_visible
 
 
-def visible_right(x, y):
+def visible_right(tree_map, x, y):
     # right
     r_visible = True
     for i in range(y + 1, len(tree_map[x])):
@@ -80,7 +82,7 @@ def visible_right(x, y):
     return r_visible
 
 
-def visible_top(x, y):
+def visible_top(tree_map, x, y):
     # top
     t_visible = True
     for i in range(0, x):
@@ -91,28 +93,28 @@ def visible_top(x, y):
     return t_visible
 
 
-def is_visible(x, y):
+def is_visible(tree_map, x, y):
     for visible in [visible_top, visible_right, visible_down, visible_left]:
-        if visible(x, y):
+        if visible(tree_map, x, y):
             return True
     return False
 
 
-def get_visible_trees():
+def get_visible_trees(tree_map):
     visible_trees = []
     for x in range(1, len(tree_map) - 1):
         for y in range(1, len(tree_map[x]) - 1):
-            if is_visible(x, y):
+            if is_visible(tree_map, x, y):
                 visible_trees.append([x, y])
     return visible_trees
 
 
-def get_highest_scenic_score():
+def get_highest_scenic_score(tree_map):
     highest_score = 0
     best_tree = ""
     for x in range(1, len(tree_map) - 1):
         for y in range(1, len(tree_map[x]) - 1):
-            scenic_score = get_scenic_score(x, y)
+            scenic_score = get_scenic_score(tree_map, x, y)
             # print(f"Scenic score of tree {[x,y]} is {scenic_score}")
             if scenic_score > highest_score:
                 highest_score = scenic_score
@@ -121,15 +123,18 @@ def get_highest_scenic_score():
     return
 
 
-def p1():
+def p1(tree_map):
     border_trees = (len(tree_map) * 4) - 4
-    print(len(get_visible_trees()) + border_trees)
+    print(f"Visible trees: {len(get_visible_trees(tree_map)) + border_trees}")
 
 
-def p2():
-    get_highest_scenic_score()
+def p2(tree_map):
+    get_highest_scenic_score(tree_map)
 
 
-def day8():
-    p1()
-    p2()
+def day8(input_file="Day8/sample"):
+    p1(get_tree_map(input_file=input_file))
+    p2(get_tree_map(input_file=input_file))
+
+
+# day8("aoc2022-inputs/d8")
