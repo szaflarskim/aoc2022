@@ -47,7 +47,7 @@ def p1(lines):
     less_than_100000 = [
         sum(dirs[dir_name]) for dir_name in dirs.keys() if sum(dirs[dir_name]) <= 100000
     ]
-    print(sum(less_than_100000))
+    print(f"The sum of their total sizes is: {sum(less_than_100000)}")
 
 
 def p2(lines):
@@ -62,7 +62,7 @@ def p2(lines):
         for dir_name in dirs.keys()
         if sum(dirs[dir_name]) > need_to_release
     ]
-    print(min(size_match))
+    print(f"Smallest matching dir size: {min(size_match)}")
 
 
 def day7(input_file="Day7/sample"):

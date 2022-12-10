@@ -1,4 +1,4 @@
-# --- Day 5: Supply Stacks ---
+# [Day 5](https://adventofcode.com/2022/day/5): Supply Stacks ---
 
 The expedition can depart as soon as the final supplies have been unloaded from the ships. Supplies are stored in stacks of marked crates, but because the needed supplies are buried under many other crates, the crates need to be rearranged.
 
@@ -61,7 +61,7 @@ Finally, one crate is moved from stack 1 to stack 2:
  1   2   3
 ```
 
-The Elves just need to know which crate will end up on top of each stack; in this example, the top crates are C in stack 1, M in stack 2, and Z in stack 3, so you should combine these together and give the Elves the message CMZ.
+The Elves just need to know which crate will end up on top of each stack; in this example, the top crates are C in stack 1, M in stack 2, and Z in stack 3, so you should combine these together and give the Elves **the message CMZ.**
 
 After the rearrangement procedure completes, what crate ends up on top of each stack?
 
@@ -78,10 +78,13 @@ The CrateMover 9001 is notable for many new and exciting features: air condition
 
 Again considering the example above, the crates begin in the same configuration:
 
+```text
     [D]
 [N] [C]
 [Z] [M] [P]
  1   2   3
+```
+
 Moving a single crate from stack 2 to stack 1 behaves the same as before:
 
 [D]
@@ -90,26 +93,35 @@ Moving a single crate from stack 2 to stack 1 behaves the same as before:
  1   2   3
 However, the action of moving three crates from stack 1 to stack 3 means that those three moved crates stay in the same order, resulting in this new configuration:
 
+```text
         [D]
         [N]
     [C] [Z]
     [M] [P]
  1   2   3
+```
+
 Next, as both crates are moved from stack 2 to stack 1, they retain their order as well:
 
+```text
         [D]
         [N]
 [C]     [Z]
 [M]     [P]
  1   2   3
+```
+
 Finally, a single crate is still moved from stack 1 to stack 2, but now it's crate C that gets moved:
 
+```text
         [D]
         [N]
         [Z]
 [M] [C] [P]
  1   2   3
-In this example, the CrateMover 9001 has put the crates in a totally different order: MCD.
+```
+
+In this example, the CrateMover 9001 has put the crates in a totally different order: **MCD.**
 
 Before the rearrangement process finishes, update your simulation so that the Elves know where they should stand to be ready to unload the final supplies. After the rearrangement procedure completes, what crate ends up on top of each stack?
 
