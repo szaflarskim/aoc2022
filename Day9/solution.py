@@ -48,9 +48,9 @@ def print_grid(positions, visited=False):
         print(pivot_grid[x])
 
 
-def move_tail(current_head, current_tail):
-    tail_x, tail_y = current_tail
-    head_x, head_y = current_head
+def move_segment(first_know, second_knot):
+    tail_x, tail_y = second_knot
+    head_x, head_y = first_know
 
     dist_x = head_x - tail_x
     dist_y = head_y - tail_y
@@ -63,10 +63,10 @@ def move_tail(current_head, current_tail):
         else:
             tail_y = tail_y + 1 if dist_y > 0 else tail_y - 1
 
-        current_tail[0] = tail_x
-        current_tail[1] = tail_y
+        second_knot[0] = tail_x
+        second_knot[1] = tail_y
 
-    return current_tail
+    return second_knot
 
 
 def move_head(direction, current_head):
@@ -87,21 +87,20 @@ def move_head(direction, current_head):
     return current_head
 
 
-def process_moves(with_grid=False):
-    current_head = [0, 0]
-    current_tail = [0, 0]
-    tail_visited = {f"{current_tail[0]} {current_tail[1]}"}
+def process_moves(rope_length=2, with_grid=False):
+    rope = [[0, 0] for _ in range(0, rope_length)]
+    tail_visited = {"0 0"}
 
     for move in moves:
         direction, steps = move.split()
         for _ in range(0, int(steps)):
-            current_head = move_head(direction, current_head)
-            current_tail = move_tail(current_head, current_tail)
-            tail_visited.add(f"{current_tail[0]} {current_tail[1]}")
+            rope[0] = move_head(direction, rope[0])
+            for i in range(0, rope_length - 1):
+                rope[i + 1] = move_segment(rope[i], rope[i + 1])
+            tail_visited.add(f"{rope[rope_length-1][0]} {rope[rope_length-1][1]}")
 
-    # print(f"Current head and tail: {[current_head, current_tail]}")
     if with_grid:
-        print_grid([current_head, current_tail])
+        print_grid(rope)
         print_grid(
             [[int(p[0]), int(p[1])] for p in [v.split() for v in list(tail_visited)]],
             visited=True,
@@ -110,15 +109,20 @@ def process_moves(with_grid=False):
     return tail_visited
 
 
-def p1(with_grid=False):
-    tail_visited = process_moves(with_grid)
-    print(f"Tail visited {len(tail_visited)} positions.")
+def p1(rope_length=2, with_grid=False):
+    tail_visited = process_moves(rope_length=rope_length, with_grid=with_grid)
+    print(
+        f"Tail visited {len(tail_visited)} positions when rope has {rope_length} knots."
+    )
 
 
-def p2():
-    pass
+def p2(rope_length=10, with_grid=False):
+    tail_visited = process_moves(rope_length=rope_length, with_grid=with_grid)
+    print(
+        f"Tail visited {len(tail_visited)} positions when rope has {rope_length} knots."
+    )
 
 
 def day9():
-    p1()
-    p2()
+    p1(with_grid=False)
+    p2(with_grid=False)
