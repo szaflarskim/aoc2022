@@ -1,3 +1,4 @@
 [submodule "aoc2022-inputs"]
 	path = aoc2022-inputs
 	url = git@github.com:szaflarskim/aoc2022-inputs.git
+	branch = main
