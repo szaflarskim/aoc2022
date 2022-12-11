@@ -90,7 +90,16 @@ def get_score(lines, get_outcome):
 
 
 def day2(input_file="Day2/sample"):
-    print("Original rules score: {}".format(get_score(get_input(input_file=input_file), get_outcome_original)))
-    print("Updated rules score: {}".format(get_score(get_input(input_file=input_file), get_outcome_new_rules)))
+    print(
+        "Original rules score: {}".format(
+            get_score(get_input(input_file=input_file), get_outcome_original)
+        )
+    )
+    print(
+        "Updated rules score: {}".format(
+            get_score(get_input(input_file=input_file), get_outcome_new_rules)
+        )
+    )
+
 
 # day2('aoc2022-inputs/d2')

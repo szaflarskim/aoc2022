@@ -1,9 +1,9 @@
-
 def get_input(input_file):
     input_file = open(input_file, "r")
     lines = [line.rstrip() for line in input_file]
     input_file.close()
     return lines
+
 
 def get_sections(lines):
     sections = []

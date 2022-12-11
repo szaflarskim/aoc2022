@@ -49,4 +49,5 @@ def day3(input_file="Day3/sample"):
     part_1(get_input(input_file=input_file))
     part_2(get_input(input_file=input_file))
 
+
 # day3('aoc2022-inputs/d3')

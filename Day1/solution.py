@@ -40,4 +40,5 @@ def day1(input_file="Day1/sample"):
     # Sol 2
     print(f"Top three calories: {sum([elf['calories'] for elf in sorted_elves[:3]])}")
 
+
 # day1('aoc2022-inputs/d1')
