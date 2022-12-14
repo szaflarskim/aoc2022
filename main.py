@@ -9,6 +9,8 @@ from Day8.solution import day8
 from Day9.solution import day9
 from Day10.solution_v2 import day10
 from Day11.solution import day11
+from Day12.solution import day12
+from Day13.solution import day13
 
 if __name__ == "__main__":
     print("Day 1 =============")
@@ -33,3 +35,7 @@ if __name__ == "__main__":
     day10()
     print("Day 11 =============")
     day11()
+    print("Day 12 =============")
+    day12()
+    print("Day 13 =============")
+    day13()

@@ -144,6 +144,6 @@ def test():
     assert len(shortest) == 31
 
 
-day12("aoc2022-inputs/d12")
+# day12("aoc2022-inputs/d12")
 
 # test()
