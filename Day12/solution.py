@@ -125,16 +125,16 @@ def day12(input_file="Day12/sample"):
     v_map, start_position, target_position = get_v_map(lines)
 
     shortest = get_shortest_path(v_map, start_position, target_position)
-    print(f"Shortest path part 1: {len(shortest)}")
+    print(f"Part 1: Shortest path takes {len(shortest)} steps.")
 
     shortest_trail = 1e7
-    for point in v_map:
-        if v_map[point].elevation == 0:
-            path = get_shortest_path(v_map, v_map[point].position, target_position)
+    for _, point in v_map.items():
+        if point.elevation == 0:
+            path = get_shortest_path(v_map, point.position, target_position)
             if path and len(path) < shortest_trail:
                 shortest_trail = len(path)
 
-    print(f"Shortest trail is {shortest_trail} steps.")
+    print(f"Part 2: Shortest trail is {shortest_trail} steps.")
 
 
 def test():

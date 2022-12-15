@@ -71,13 +71,13 @@ def compare_int(left, right):
 
 def compare_pair(packet_pair):
     left, right = packet_pair
-    if type(left) == int and type(right) == int:
+    if isinstance(left, int) and isinstance(right, int):
         return compare_int(left, right)
-    elif type(left) == list and type(right) == list:
+    elif isinstance(left, list) and isinstance(right, list):
         return compare_lists(left, right)
     else:
-        left = [left] if type(left) == int else left
-        right = [right] if type(right) == int else right
+        left = [left] if isinstance(left, int) else left
+        right = [right] if isinstance(right, int) else right
         return compare_lists(left, right)
 
 
@@ -90,6 +90,7 @@ def get_indices_in_right_order(packet_pairs):
 
 
 def bubble_sort_packets(packets):
+    # 0.17s user 0.02s system 72% cpu 0.271 total for p1 and p2 on full input
     for i in range(len(packets)):
         for j in range(0, len(packets) - i - 1):
             if compare_pair([packets[j], packets[j + 1]]) is CompResult.THE_BAD:
@@ -97,8 +98,26 @@ def bubble_sort_packets(packets):
     return packets
 
 
+def quick_sort_packets(packets):
+    """
+    # 0.03s user 0.02s system 39% cpu 0.129 total for p1 and p2 on full input
+    """
+    if len(packets) <= 1:
+        return packets
+    pivot = packets[0]
+    left = []
+    right = []
+    for packet in packets[1:]:
+        if compare_pair([packet, pivot]) is not CompResult.THE_BAD:
+            left.append(packet)
+        else:
+            right.append(packet)
+    return quick_sort_packets(left) + [pivot] + quick_sort_packets(right)
+
+
 def get_divider_indices(packets, print_packages=False):
-    packets = bubble_sort_packets(packets)
+    # packets = bubble_sort_packets(packets)
+    packets = quick_sort_packets(packets)
 
     index = 0
     divider_1_index = None
@@ -110,7 +129,7 @@ def get_divider_indices(packets, print_packages=False):
             divider_2_index = index + 1
         index += 1
     if print_packages:
-        print(f"Sorted packets: ")
+        print("Sorted packets: ")
         for packet in packets:
             print(packet)
 
@@ -154,7 +173,7 @@ def test():
     test_divider_indices()
 
 
-# day13("aoc2022-inputs/d13")
+day13("aoc2022-inputs/d13")
 
 # day13()
 
