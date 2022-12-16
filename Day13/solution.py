@@ -173,7 +173,7 @@ def test():
     test_divider_indices()
 
 
-day13("aoc2022-inputs/d13")
+# day13("aoc2022-inputs/d13")
 
 # day13()
 

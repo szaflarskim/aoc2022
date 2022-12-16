@@ -135,7 +135,7 @@ def test():
     assert sand_flow(cave_copy, *min_max, part2=True) == 93
 
 
-day14("aoc2022-inputs/d14", print_cave=False)
+# day14("aoc2022-inputs/d14", print_cave=False)
 
 # day14(print_cave=True)
 
